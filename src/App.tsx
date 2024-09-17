@@ -8,8 +8,6 @@ import { searchablePositions } from "./data/searchablePositions";
 
 function App() {
   const [position, setPosition] = useState("qb");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
 
   return (
     <div className="App">
@@ -23,13 +21,7 @@ function App() {
         />
       </nav>
       <main>
-        <PlayerList
-          position={position}
-          loading={loading}
-          handleLoading={setLoading}
-          error={error}
-          setError={setError}
-        />
+        <PlayerList position={position} />
       </main>
     </div>
   );

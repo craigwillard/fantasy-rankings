@@ -3,25 +3,17 @@ import { DataService } from "../../services/data.service";
 
 interface PlayersProps {
   position: string;
-  loading: boolean;
-  handleLoading: Function;
-  error: string;
-  setError: Function;
 }
 
-export function PlayerList({
-  position,
-  loading,
-  handleLoading,
-  error,
-  setError,
-}: PlayersProps) {
+export function PlayerList({ position }: PlayersProps) {
   const [players, setPlayers] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   useEffect(
     function () {
       async function getQuarterbacks(position: string) {
         try {
-          handleLoading(true);
+          setLoading(true);
           setError("");
           const response = await DataService.getQBs(position);
           if (!response?.ok) {
@@ -40,12 +32,12 @@ export function PlayerList({
           }
           console.error(error);
         } finally {
-          handleLoading(false);
+          setLoading(false);
         }
       }
       getQuarterbacks(position);
     },
-    [position, handleLoading, setError]
+    [position, setLoading, setError]
   );
   return (
     <>
