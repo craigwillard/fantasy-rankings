@@ -13,6 +13,8 @@ test("renders position select", () => {
       position="qb"
       setPosition={setPosition}
       searchablePositions={searchablePositions}
+      searchTerm=""
+      setSearchTerm={() => {}}
     />
   );
 

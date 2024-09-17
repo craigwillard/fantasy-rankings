@@ -8,6 +8,7 @@ import { searchablePositions } from "./data/searchablePositions";
 
 function App() {
   const [position, setPosition] = useState("qb");
+  const [searchTerm, setSearchTerm] = useState("");
 
   return (
     <div className="App">
@@ -18,10 +19,12 @@ function App() {
           searchablePositions={searchablePositions}
           position={position}
           setPosition={setPosition}
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
         />
       </nav>
       <main>
-        <PlayerList position={position} />
+        <PlayerList position={position} searchTerm={searchTerm} />
       </main>
     </div>
   );

@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import { DataService } from "../../services/data.service";
+import { Player } from "../../types/player";
 
 interface PlayersProps {
   position: string;
+  searchTerm: string;
 }
 
-export function PlayerList({ position }: PlayersProps) {
-  const [players, setPlayers] = useState([]);
+export function PlayerList({ position, searchTerm }: PlayersProps) {
+  const [players, setPlayers] = useState<Player[]>([]);
+  const [filteredPlayers, setFilteredPlayers] = useState<Player[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   useEffect(
@@ -24,6 +27,7 @@ export function PlayerList({ position }: PlayersProps) {
           console.log(response);
           const players = await response.json();
           setPlayers(players);
+          setFilteredPlayers(players);
         } catch (error) {
           if (error instanceof Error) {
             setError(error.message);
@@ -39,14 +43,28 @@ export function PlayerList({ position }: PlayersProps) {
     },
     [position, setLoading, setError]
   );
+  useEffect(
+    function () {
+      setFilteredPlayers(
+        players.filter(
+          (player) =>
+            player.name.toLowerCase().search(searchTerm.toLowerCase()) >= 0
+        )
+      );
+    },
+    [players, searchTerm]
+  );
   return (
     <>
       <h2>Position: {position.toUpperCase()}</h2>
       {!loading && !error && (
         <>
-          <h3>Players ({players.length})</h3>
+          <h3>
+            Players {searchTerm ? `containing ${searchTerm}` : ""} (
+            {filteredPlayers.length})
+          </h3>
           <ul>
-            {players.map((player: any) => (
+            {filteredPlayers.map((player: any) => (
               <li key={player.name}>{player?.name}</li>
             ))}
           </ul>
