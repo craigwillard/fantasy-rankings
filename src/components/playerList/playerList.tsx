@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Player } from "../../types/player";
 import { usePosition } from "../../hooks/usePosition";
+// import { useLocalStorageState } from "../../hooks/useLocalStorageState";
 
 interface PlayersProps {
   position: string;
@@ -9,6 +10,7 @@ interface PlayersProps {
 
 export default function PlayerList({ position, searchTerm }: PlayersProps) {
   const [filteredPlayers, setFilteredPlayers] = useState<Player[]>([]);
+  //   const [drafted, setDrafted] = useLocalStorageState([]);
   const { players, loading, error } = usePosition(position);
 
   useEffect(
