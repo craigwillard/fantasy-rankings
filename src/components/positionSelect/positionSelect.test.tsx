@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { PositionSelect } from "./positionSelect";
+import PositionSelect from "./positionSelect";
 import { searchablePositions } from "../../data/searchablePositions";
 
 test("renders position select", () => {

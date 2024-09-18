@@ -1,9 +1,9 @@
 import "./App.css";
 
 import { useState } from "react";
-import { Header } from "./components/header/header";
-import { PlayerList } from "./components/playerList/playerList";
-import { PositionSelect } from "./components/positionSelect/positionSelect";
+import Header from "./components/header/header";
+import PlayerList from "./components/playerList/playerList";
+import PositionSelect from "./components/positionSelect/positionSelect";
 import { searchablePositions } from "./data/searchablePositions";
 
 function App() {
@@ -12,7 +12,9 @@ function App() {
 
   return (
     <div className="App">
-      <Header title="Fantasy Rankings" />
+      <Header>
+        <h1>Fantasy Rankings</h1>
+      </Header>
       <nav>
         <PositionSelect
           labelText="Position"

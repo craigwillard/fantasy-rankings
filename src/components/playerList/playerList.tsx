@@ -7,7 +7,7 @@ interface PlayersProps {
   searchTerm: string;
 }
 
-export function PlayerList({ position, searchTerm }: PlayersProps) {
+export default function PlayerList({ position, searchTerm }: PlayersProps) {
   const [players, setPlayers] = useState<Player[]>([]);
   const [filteredPlayers, setFilteredPlayers] = useState<Player[]>([]);
   const [loading, setLoading] = useState(false);
@@ -63,11 +63,11 @@ export function PlayerList({ position, searchTerm }: PlayersProps) {
             Players {searchTerm ? `containing ${searchTerm}` : ""} (
             {filteredPlayers.length})
           </h3>
-          <ul>
+          <ol>
             {filteredPlayers.map((player: any) => (
               <li key={player.name}>{player?.name}</li>
             ))}
-          </ul>
+          </ol>
         </>
       )}
       {loading && (

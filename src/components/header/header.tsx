@@ -1,7 +1,5 @@
-export function Header({ title }: { title: string }) {
-  return (
-    <header>
-      <h1>{title}</h1>
-    </header>
-  );
+import { ReactNode } from "react";
+
+export default function Header({ children }: { children: ReactNode }) {
+  return <header>{children}</header>;
 }
