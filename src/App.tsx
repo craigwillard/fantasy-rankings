@@ -1,4 +1,4 @@
-import "./App.css";
+import "./App.scss";
 
 import { useState } from "react";
 import Header from "./components/header/header";
@@ -13,7 +13,7 @@ function App() {
   return (
     <div className="App">
       <Header>
-        <h1>Fantasy Rankings</h1>
+        <h1 className="heading">Fantasy Rankings</h1>
       </Header>
       <nav>
         <PositionSelect
