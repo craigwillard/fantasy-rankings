@@ -1,5 +1,6 @@
-// import { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { SearchablePosition } from "../../types/searchablePositions";
+import { useKey } from "../../hooks/useKey";
 
 interface PositionSelectProps {
   labelText: string;
@@ -18,26 +19,27 @@ export default function PositionSelect({
   setSearchTerm,
   searchablePositions,
 }: PositionSelectProps) {
-  //   const searchBox = useRef<HTMLInputElement>(null);
+  const searchBox = useRef<HTMLInputElement>(null);
 
-  //   useEffect(() => {
-  //     function callback(e: KeyboardEvent) {
-  //       if (e.code === "Escape") {
-  //         setSearchTerm("");
-  //       }
-  //       searchBox.current?.focus();
-  //     }
+  function focusSearchBox() {
+    searchBox.current?.focus();
+  }
 
-  //     document.addEventListener("keydown", callback);
-
-  //     return () => {
-  //       document.removeEventListener("keydown", callback);
-  //     };
-  //   }, [setSearchTerm]);
   function updatePosition(position: string) {
     setPosition(position);
     setSearchTerm("");
+    focusSearchBox();
   }
+
+  useEffect(() => {
+    focusSearchBox();
+  }, []);
+
+  useKey("Escape", function () {
+    setSearchTerm("");
+    focusSearchBox();
+  });
+
   return (
     <form>
       <fieldset>
@@ -59,7 +61,7 @@ export default function PositionSelect({
           type="text"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          //   ref={searchBox}
+          ref={searchBox}
         />
       </fieldset>
     </form>
