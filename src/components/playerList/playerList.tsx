@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { DataService } from "../../services/data.service";
 import { Player } from "../../types/player";
+import { usePosition } from "../../hooks/usePosition";
 
 interface PlayersProps {
   position: string;
@@ -8,41 +8,9 @@ interface PlayersProps {
 }
 
 export default function PlayerList({ position, searchTerm }: PlayersProps) {
-  const [players, setPlayers] = useState<Player[]>([]);
   const [filteredPlayers, setFilteredPlayers] = useState<Player[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  useEffect(
-    function () {
-      async function getQuarterbacks(position: string) {
-        try {
-          setLoading(true);
-          setError("");
-          const response = await DataService.getQBs(position);
-          if (!response?.ok) {
-            throw new Error(
-              `Something went wrong with fetching ${position.toUpperCase()}s.`
-            );
-          }
-          console.log(response);
-          const players = await response.json();
-          setPlayers(players);
-          setFilteredPlayers(players);
-        } catch (error) {
-          if (error instanceof Error) {
-            setError(error.message);
-          } else {
-            setError(String(error));
-          }
-          console.error(error);
-        } finally {
-          setLoading(false);
-        }
-      }
-      getQuarterbacks(position);
-    },
-    [position, setLoading, setError]
-  );
+  const { players, loading, error } = usePosition(position);
+
   useEffect(
     function () {
       setFilteredPlayers(
