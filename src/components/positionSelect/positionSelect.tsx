@@ -46,7 +46,6 @@ export default function PositionSelect({
         <label htmlFor="position">{labelText}</label>
         <select
           id="position"
-          name="position"
           value={position}
           onChange={(e) => updatePosition(e.target.value)}
         >
@@ -58,6 +57,7 @@ export default function PositionSelect({
         </select>
         <label htmlFor="search">Search</label>
         <input
+          id="search"
           type="text"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
