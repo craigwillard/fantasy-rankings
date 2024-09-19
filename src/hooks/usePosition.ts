@@ -4,8 +4,8 @@ import { Player } from "../types/player";
 
 export function usePosition(position: string) {
   const [players, setPlayers] = useState<Player[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string>("");
 
   useEffect(
     function () {
