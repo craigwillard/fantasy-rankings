@@ -19,7 +19,7 @@ function App() {
         <div className="inner">
           <Header>
             <h1 className="heading">Fantasy Rankings</h1>
-            <label htmlFor="mode">Change to dark mode</label>
+            <label htmlFor="mode">Dark mode</label>
             <input
               id="mode"
               type="checkbox"
