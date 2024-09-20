@@ -1,8 +1,21 @@
-.App {
-  margin: 2rem 4rem;
+.outer {
 }
 
 .dark {
   background-color: black;
   color: white;
+}
+
+.inner {
+  padding: 2rem 4rem;
+}
+
+header {
+  margin-bottom: 1rem;
+}
+
+label,
+select,
+input {
+  margin-right: 0.5rem;
 }
