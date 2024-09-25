@@ -33,11 +33,13 @@ export default function PlayerList({ position, searchTerm }: PlayersProps) {
             Players {searchTerm ? `containing ${searchTerm}` : ""} (
             {filteredPlayers.length})
           </h3>
-          <ol>
+          <ul>
             {filteredPlayers.map((player: any) => (
-              <li key={player.name}>{player?.name}</li>
+              <li key={player.name}>
+                {player?.rank}). {player?.name}
+              </li>
             ))}
-          </ol>
+          </ul>
         </>
       )}
       {loading && (
