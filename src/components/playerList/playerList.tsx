@@ -1,3 +1,5 @@
+import "./playerList.scss";
+
 import { useEffect, useState } from "react";
 import { Player } from "../../types/player";
 import { usePosition } from "../../hooks/usePosition";
@@ -11,7 +13,15 @@ interface PlayersProps {
 export default function PlayerList({ position, searchTerm }: PlayersProps) {
   const [filteredPlayers, setFilteredPlayers] = useState<Player[]>([]);
   //   const [drafted, setDrafted] = useLocalStorageState([]);
-  const { players, loading, error } = usePosition(position);
+  const { players, loading, error, setPlayers } = usePosition(position);
+
+  function draftPlayer(name: string) {
+    setPlayers((players) =>
+      players.map((player) =>
+        player.name === name ? { ...player, drafted: !player.drafted } : player
+      )
+    );
+  }
 
   useEffect(
     function () {
@@ -36,7 +46,18 @@ export default function PlayerList({ position, searchTerm }: PlayersProps) {
           <ul>
             {filteredPlayers.map((player: any) => (
               <li key={player.name}>
-                {player?.rank}). {player?.name}
+                <input
+                  id={`player-${player.rank}`}
+                  type="checkbox"
+                  value={player.drafted}
+                  onChange={() => draftPlayer(player.name)}
+                />
+                <label
+                  htmlFor={`player-${player.rank}`}
+                  className={player?.drafted ? "drafted" : ""}
+                >
+                  {player?.rank}). {player?.name}
+                </label>
               </li>
             ))}
           </ul>

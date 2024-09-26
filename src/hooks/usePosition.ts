@@ -42,5 +42,6 @@ export function usePosition(position: string) {
     players,
     loading,
     error,
+    setPlayers,
   };
 }
