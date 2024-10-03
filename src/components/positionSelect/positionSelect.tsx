@@ -46,6 +46,7 @@ export default function PositionSelect({
         <fieldset>
           <legend>Find fantasy players</legend>
           <label htmlFor="position">{labelText}</label>
+          {/* TODO: add reset search functionality */}
           <select
             id="position"
             value={position}

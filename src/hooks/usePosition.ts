@@ -8,6 +8,7 @@ export function usePosition(position: string) {
   const [error, setError] = useState<string>("");
 
   useEffect(
+    // TODO: check local storage before fetching
     function () {
       async function getQuarterbacks(position: string) {
         try {

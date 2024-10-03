@@ -54,6 +54,7 @@ function App() {
   return (
     <div className={`outer ${mode}`}>
       <div className="inner">
+        {/* TODO: configure multiple sports */}
         <Header>
           <h1 className="heading">Fantasy Rankings</h1>
           <label htmlFor="mode">Dark mode</label>
