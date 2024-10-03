@@ -43,7 +43,7 @@ export default function PlayerList({ position, searchTerm }: PlayersProps) {
             Players {searchTerm ? `containing ${searchTerm}` : ""} (
             {filteredPlayers.length})
           </h3>
-          <ul>
+          <ul className="players">
             {filteredPlayers.map((player: any) => (
               <li key={player.name}>
                 <input
@@ -56,7 +56,7 @@ export default function PlayerList({ position, searchTerm }: PlayersProps) {
                   htmlFor={`player-${player.rank}`}
                   className={player?.drafted ? "drafted" : ""}
                 >
-                  {player?.rank}). {player?.name}
+                  {player?.rank}. {player?.name}
                 </label>
               </li>
             ))}

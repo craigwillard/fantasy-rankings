@@ -41,29 +41,32 @@ export default function PositionSelect({
   });
 
   return (
-    <form>
-      <fieldset>
-        <label htmlFor="position">{labelText}</label>
-        <select
-          id="position"
-          value={position}
-          onChange={(e) => updatePosition(e.target.value)}
-        >
-          {searchablePositions.map((position: any) => (
-            <option value={position.value} key={position.value}>
-              {position.name}
-            </option>
-          ))}
-        </select>
-        <label htmlFor="search">Search</label>
-        <input
-          id="search"
-          type="text"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          ref={searchBox}
-        />
-      </fieldset>
-    </form>
+    <search>
+      <form>
+        <fieldset>
+          <legend>Find fantasy players</legend>
+          <label htmlFor="position">{labelText}</label>
+          <select
+            id="position"
+            value={position}
+            onChange={(e) => updatePosition(e.target.value)}
+          >
+            {searchablePositions.map((position: any) => (
+              <option value={position.value} key={position.value}>
+                {position.name}
+              </option>
+            ))}
+          </select>
+          <label htmlFor="search">Search</label>
+          <input
+            id="search"
+            type="text"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            ref={searchBox}
+          />
+        </fieldset>
+      </form>
+    </search>
   );
 }
