@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react";
 import { DataService } from "../services/data.service";
-import { Player } from "../types/player";
+import { useLocalStorageState } from "./useLocalStorageState";
 
 export function usePosition(position: string) {
-  const [players, setPlayers] = useState<Player[]>([]);
+  const [players, setPlayers] = useLocalStorageState([], position);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
 
+  console.log(players);
+
   useEffect(
-    // TODO: check local storage before fetching
     function () {
-      async function getQuarterbacks(position: string) {
+      async function fetchPosition(position: string) {
         try {
           setLoading(true);
           setError("");
@@ -34,9 +35,13 @@ export function usePosition(position: string) {
           setLoading(false);
         }
       }
-      getQuarterbacks(position);
+      if (players.length > 0) {
+        setPlayers(players);
+      } else {
+        fetchPosition(position);
+      }
     },
-    [position, setLoading, setError]
+    [position, setLoading, setError, players, setPlayers]
   );
 
   return {
