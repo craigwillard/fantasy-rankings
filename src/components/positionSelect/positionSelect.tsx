@@ -2,6 +2,8 @@ import { useEffect, useRef } from "react";
 import { SearchablePosition } from "../../types/searchablePositions";
 import { useKey } from "../../hooks/useKey";
 
+const DEFAULT_POSITION = "qb";
+
 interface PositionSelectProps {
   labelText: string;
   position: string;
@@ -25,7 +27,7 @@ export default function PositionSelect({
     searchBox.current?.focus();
   }
 
-  function updatePosition(position: string) {
+  function updatePosition(position: string = DEFAULT_POSITION) {
     setPosition(position);
     setSearchTerm("");
     focusSearchBox();
@@ -46,7 +48,6 @@ export default function PositionSelect({
         <fieldset>
           <legend>Find fantasy players</legend>
           <label htmlFor="position">{labelText}</label>
-          {/* TODO: add reset search functionality */}
           <select
             id="position"
             value={position}
@@ -66,6 +67,9 @@ export default function PositionSelect({
             onChange={(e) => setSearchTerm(e.target.value)}
             ref={searchBox}
           />
+          <button type="reset" onClick={() => updatePosition()}>
+            Reset Search
+          </button>
         </fieldset>
       </form>
     </search>
