@@ -9,6 +9,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <BrowserRouter>
     <Routes>
+      {/* TODO: set up route for player */}
       <Route path="*" element={<App />}></Route>
       {/* TODO: set up routes for positions */}
       {/* <Route path="qb" element={<App position="qb" />}></Route>

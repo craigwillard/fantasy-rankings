@@ -5,6 +5,7 @@ import Header from "./components/header/header";
 import PlayerList from "./components/playerList/playerList";
 import PositionSelect from "./components/positionSelect/positionSelect";
 import { searchablePositions } from "./data/searchablePositions";
+import { useLocalStorageState } from "./hooks/useLocalStorageState";
 
 type AppState = {
   position: string;
@@ -33,7 +34,16 @@ const initialState: AppState = {
 };
 
 function App() {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [isDarkMode, setIsDarkMode] = useLocalStorageState(
+    window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light",
+    "mode"
+  );
+  const [state, dispatch] = useReducer(reducer, {
+    ...initialState,
+    mode: isDarkMode,
+  });
   const { position, searchTerm, mode } = state;
 
   const updatePosition = function (position: string) {
@@ -45,10 +55,12 @@ function App() {
   };
 
   const updateMode = function (e: React.ChangeEvent<HTMLInputElement>) {
+    const mode = e.target.checked ? "dark" : "light";
     dispatch({
       type: "updateMode",
-      payload: e.target.checked ? "dark" : "light",
+      payload: mode,
     });
+    setIsDarkMode(mode);
   };
 
   return (
