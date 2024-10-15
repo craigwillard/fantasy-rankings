@@ -6,6 +6,7 @@ import PlayerList from "./components/playerList/playerList";
 import PositionSelect from "./components/positionSelect/positionSelect";
 import { searchablePositions } from "./data/searchablePositions";
 import { useLocalStorageState } from "./hooks/useLocalStorageState";
+import { translationConstants } from "./i18n/en-us";
 
 type AppState = {
   position: string;
@@ -24,6 +25,7 @@ function reducer(state: AppState, action: any) {
       return { ...state, mode: payload };
     default:
       throw new Error("No action provided");
+    // return { ...state };
   }
 }
 
@@ -68,8 +70,8 @@ function App() {
       <div className="inner">
         {/* TODO: configure multiple sports */}
         <Header>
-          <h1 className="heading">Fantasy Rankings</h1>
-          <label htmlFor="mode">Dark mode</label>
+          <h1 className="heading">{translationConstants.app.heading}</h1>
+          <label htmlFor="mode">{translationConstants.app.darkMode}</label>
           <input
             id="mode"
             type="checkbox"

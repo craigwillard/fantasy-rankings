@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import { DataService } from "../services/data.service";
 import { useLocalStorageState } from "./useLocalStorageState";
+import { translationConstants } from "../i18n/en-us";
 
 export function usePosition(position: string) {
   const [players, setPlayers] = useLocalStorageState([], position);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
-
-  console.log(players);
 
   useEffect(
     function () {
@@ -18,10 +17,10 @@ export function usePosition(position: string) {
           const response = await DataService.getQBs(position);
           if (!response?.ok) {
             throw new Error(
-              `Something went wrong with fetching ${position.toUpperCase()}s.`
+              `${translationConstants.errors.fetch} ${position.toUpperCase()}s.`
             );
           }
-          console.log(response);
+          // console.log(response);
           const players = await response.json();
           setPlayers(players);
         } catch (error) {
@@ -30,7 +29,7 @@ export function usePosition(position: string) {
           } else {
             setError(String(error));
           }
-          console.error(error);
+          // console.error(error);
         } finally {
           setLoading(false);
         }

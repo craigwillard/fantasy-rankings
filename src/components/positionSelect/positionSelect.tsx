@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { SearchablePosition } from "../../types/searchablePositions";
 import { useKey } from "../../hooks/useKey";
+import { translationConstants } from "../../i18n/en-us";
 
 const DEFAULT_POSITION = "qb";
 
@@ -23,30 +24,34 @@ export default function PositionSelect({
 }: PositionSelectProps) {
   const searchBox = useRef<HTMLInputElement>(null);
 
+  function clearSearchAndFocus() {
+    setSearchTerm("");
+    focusSearchBox();
+  }
+
   function focusSearchBox() {
     searchBox.current?.focus();
   }
 
   function updatePosition(position: string = DEFAULT_POSITION) {
     setPosition(position);
-    setSearchTerm("");
-    focusSearchBox();
+    clearSearchAndFocus();
   }
 
+  // focus on initial page load
   useEffect(() => {
     focusSearchBox();
   }, []);
 
   useKey("Escape", function () {
-    setSearchTerm("");
-    focusSearchBox();
+    clearSearchAndFocus();
   });
 
   return (
     <search>
       <form>
         <fieldset>
-          <legend>Find fantasy players</legend>
+          <legend>{translationConstants.positionSelect.findPlayers}</legend>
           <label htmlFor="position">{labelText}</label>
           <select
             id="position"
@@ -59,7 +64,9 @@ export default function PositionSelect({
               </option>
             ))}
           </select>
-          <label htmlFor="search">Search</label>
+          <label htmlFor="search">
+            {translationConstants.positionSelect.search}
+          </label>
           <input
             id="search"
             type="text"
@@ -68,7 +75,7 @@ export default function PositionSelect({
             ref={searchBox}
           />
           <button type="reset" onClick={() => updatePosition()}>
-            Reset Search
+            {translationConstants.positionSelect.resetSearch}
           </button>
         </fieldset>
       </form>

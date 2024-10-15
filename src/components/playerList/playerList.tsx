@@ -3,6 +3,7 @@ import "./playerList.scss";
 import { useEffect, useState } from "react";
 import { Player } from "../../types/player";
 import { usePosition } from "../../hooks/usePosition";
+import { translationConstants } from "../../i18n/en-us";
 
 interface PlayersProps {
   position: string;
@@ -35,11 +36,15 @@ export default function PlayerList({ position, searchTerm }: PlayersProps) {
   );
   return (
     <>
-      <h2>Position: {position.toUpperCase()}</h2>
+      <h2>
+        {translationConstants.playerList.labelPosition}:{" "}
+        {position.toUpperCase()}
+      </h2>
       {!loading && !error && (
         <>
           <h3>
-            Players {searchTerm ? `containing ${searchTerm}` : ""} (
+            {translationConstants.playerList.labelPlayers}{" "}
+            {searchTerm ? `containing ${searchTerm}` : ""} (
             {filteredPlayers.length})
           </h3>
           <ul className="players">
@@ -64,7 +69,7 @@ export default function PlayerList({ position, searchTerm }: PlayersProps) {
       )}
       {loading && (
         <>
-          <h3>LOADING...</h3>
+          <h3>{translationConstants.global.loading}</h3>
         </>
       )}
       {error && <h3>{error}</h3>}
