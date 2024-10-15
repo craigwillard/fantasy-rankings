@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
+
 import { DataService } from "../services/data.service";
-import { useLocalStorageState } from "./useLocalStorageState";
 import { translationConstants } from "../i18n/en-us";
+import { useLocalStorageState } from "./useLocalStorageState";
 
 export function usePosition(position: string) {
   const [players, setPlayers] = useLocalStorageState([], position);

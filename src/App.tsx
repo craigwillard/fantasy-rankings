@@ -1,12 +1,13 @@
+import { useReducer } from "react";
+
 import "./App.scss";
 
-import { useReducer } from "react";
+import { searchablePositions } from "./data/searchablePositions";
+import { translationConstants } from "./i18n/en-us";
+import { useLocalStorageState } from "./hooks/useLocalStorageState";
 import Header from "./components/header/header";
 import PlayerList from "./components/playerList/playerList";
 import PositionSelect from "./components/positionSelect/positionSelect";
-import { searchablePositions } from "./data/searchablePositions";
-import { useLocalStorageState } from "./hooks/useLocalStorageState";
-import { translationConstants } from "./i18n/en-us";
 
 type AppState = {
   position: string;

@@ -1,7 +1,8 @@
 import { useEffect, useRef } from "react";
+
 import { SearchablePosition } from "../../types/searchablePositions";
-import { useKey } from "../../hooks/useKey";
 import { translationConstants } from "../../i18n/en-us";
+import { useKey } from "../../hooks/useKey";
 
 const DEFAULT_POSITION = "qb";
 

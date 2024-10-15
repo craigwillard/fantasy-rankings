@@ -1,9 +1,9 @@
-import "./playerList.scss";
-
 import { useEffect, useState } from "react";
+
+import "./playerList.scss";
 import { Player } from "../../types/player";
-import { usePosition } from "../../hooks/usePosition";
 import { translationConstants } from "../../i18n/en-us";
+import { usePosition } from "../../hooks/usePosition";
 
 interface PlayersProps {
   position: string;

@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
-import PositionSelect from "./positionSelect";
+
 import { searchablePositions } from "../../data/searchablePositions";
+import PositionSelect from "./positionSelect";
 
 test("renders position select", () => {
   // arrange
