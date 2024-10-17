@@ -15,7 +15,7 @@ export function usePosition(position: string) {
         try {
           setLoading(true);
           setError("");
-          const response = await DataService.getQBs(position);
+          const response = await DataService.getPosition(`nfl/${position}`);
           if (!response?.ok) {
             throw new Error(
               `${translationConstants.errors.fetch} ${position.toUpperCase()}s.`

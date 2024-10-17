@@ -1,19 +1,10 @@
 import { useEffect, useRef } from "react";
 
-import { SearchablePosition } from "../../types/searchablePositions";
 import { translationConstants } from "../../i18n/en-us";
 import { useKey } from "../../hooks/useKey";
+import { PositionSelectProps } from "./positionSelect.types";
 
 const DEFAULT_POSITION = "qb";
-
-interface PositionSelectProps {
-  labelText: string;
-  position: string;
-  setPosition: Function;
-  searchTerm: string;
-  setSearchTerm: Function;
-  searchablePositions: SearchablePosition[];
-}
 
 export default function PositionSelect({
   labelText,

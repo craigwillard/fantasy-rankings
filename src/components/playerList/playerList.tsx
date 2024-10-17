@@ -4,11 +4,7 @@ import "./playerList.scss";
 import { Player } from "../../types/player";
 import { translationConstants } from "../../i18n/en-us";
 import { usePosition } from "../../hooks/usePosition";
-
-interface PlayersProps {
-  position: string;
-  searchTerm: string;
-}
+import { PlayersProps } from "./playerList.types";
 
 export default function PlayerList({ position, searchTerm }: PlayersProps) {
   const [filteredPlayers, setFilteredPlayers] = useState<Player[]>([]);
